@@ -1,5 +1,5 @@
 # MeanBox
-Konfigurasi Vagrant untuk [M.E.A.N](https://mean.io)
+Konfigurasi Vagrant untuk [M.E.A.N](https://mean.io) Plus MySQL
 
 ## Port Forwarding
 MeanBox dikonfigurasi dengan port forwarding dari localhost (127.0.0.1), dengan port sebagai berikut:

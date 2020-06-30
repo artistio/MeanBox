@@ -20,3 +20,32 @@ apt-get install -y git
 apt-get install -y build-essential
 apt-get install -y nodejs
 apt-get install -y mongodb-org=$MONGO_VER mongodb-org-server=$MONGO_VER mongodb-org-shell=$MONGO_VER mongodb-org-mongos=$MONGO_VER mongodb-org-tools=$MONGO_VER
+apt-get install -y mysql-server
+
+# Securing MySQL
+apt-get install -y expect
+// Not required in actual script
+MYSQL_ROOT_PASSWORD=abcd1234
+
+SECURE_MYSQL=$(expect -c "
+set timeout 10
+spawn mysql_secure_installation
+expect \"Enter current password for root (enter for none):\"
+send \"$MYSQL\r\"
+expect \"Change the root password?\"
+send \"n\r\"
+expect \"Remove anonymous users?\"
+send \"y\r\"
+expect \"Disallow root login remotely?\"
+send \"y\r\"
+expect \"Remove test database and access to it?\"
+send \"y\r\"
+expect \"Reload privilege tables now?\"
+send \"y\r\"
+expect eof
+")
+
+echo "$SECURE_MYSQL"
+
+apt-get remove -y expect
+
